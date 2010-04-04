@@ -61,6 +61,8 @@ int iLoadStateFrom;
 int iCallW32Gui;
 char szCurrentPath[256];
 char szMovieToLoad[256];
+char szWatchToLoad[256];
+
 
 uint32 mousex,mousey;
 
@@ -256,8 +258,9 @@ PCHAR*    CommandLineToArgvA( PCHAR CmdLine, int* _argc)
 //}
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-	char runcd=0;
-	char loadMovie=0;
+	int runcd=0;
+	int loadMovie=0;
+	int loadWatch=0;
 	int i, argc;
 	PCHAR *argv;
 
@@ -291,14 +294,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			sscanf (argv[++i],"%lu",&Movie.stopCapture);
 		else if (!strcmp(argv[i], "-readonly"))
 			Movie.readOnly = 1;
-//		else if (!strcmp(argv[i], "-memwatch")) {
-//			CreateMemWatch();
-//			if (! LoadMemWatchFile(argv[++i]) ) {
-//				char errorMessage[320];
-//				sprintf(errorMessage, "RAM Watch file \"%s\" doesn't exist.",argv[i]);
-//				MessageBox(NULL, errorMessage, NULL, MB_ICONERROR);
-//			}
-//		}
+		else if (!strcmp(argv[i], "-memwatch")) {
+			loadWatch = 1;
+			sprintf(szWatchToLoad,"%s",argv[++i]);
+		}
 	}
 
 	GetCurrentPath();
@@ -341,6 +340,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		PostMessage(gApp.hWnd, WM_COMMAND, ID_FILE_RUNCDBIOS, 0);
 	else if (loadMovie)
 		WIN32_StartMovieReplay(szMovieToLoad);
+
+	if (loadWatch) {
+		RamWatchHWnd = CreateDialog(gApp.hInstance, MAKEINTRESOURCE(IDD_RAMWATCH), NULL, (DLGPROC) RamWatchProc);
+		if (!Load_Watches(true, szWatchToLoad)) {
+			char errorMessage[1024];
+			sprintf(errorMessage, "RAM Watch file \"%s\" doesn't exist.",szWatchToLoad);
+			MessageBox(NULL, errorMessage, NULL, MB_ICONERROR);
+		}
+	}
 
 	RunGui();
 
