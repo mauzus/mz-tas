@@ -1950,6 +1950,7 @@ INT_PTR CALLBACK DlgMemPoke(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)
 					sscanf(bufPokeNewval, "%d", &scanned);
 					newval = (uint8)(scanned & 0xff);
 					psxMemWrite8(address,newval);
+					Update_RAM_Search();
 					return TRUE;
 				}
 
