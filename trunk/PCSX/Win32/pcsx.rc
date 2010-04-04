@@ -1,0 +1,679 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "win32.h"
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDR_RWACCELERATOR ACCELERATORS
+BEGIN
+    "N",            RAMMENU_FILE_NEW,       VIRTKEY, CONTROL
+    "O",            RAMMENU_FILE_OPEN,      VIRTKEY, CONTROL
+    "S",            RAMMENU_FILE_SAVE,      VIRTKEY, CONTROL
+    "S",            RAMMENU_FILE_SAVEAS,    VIRTKEY, SHIFT, CONTROL
+    "A",            IDC_C_WATCH_DUPLICATE,  VIRTKEY 
+    "E",            IDC_C_WATCH_EDIT,       VIRTKEY 
+    "D",            IDC_C_WATCH_DOWN,       VIRTKEY 
+    "U",            IDC_C_WATCH_UP,         VIRTKEY 
+    "N",            IDC_C_WATCH,            VIRTKEY 
+    "R",            IDC_C_WATCH_REMOVE,     VIRTKEY 
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MCDCONF DIALOG  0, 0, 407, 197
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Memcard Manager"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,285,175,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,345,175,50,14
+    EDITTEXT        IDC_MCD1,10,155,160,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MCD2,235,155,160,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Select Mcd",IDC_MCDSEL1,10,135,50,14
+    PUSHBUTTON      "Select Mcd",IDC_MCDSEL2,235,135,50,14
+    GROUPBOX        "Memory Card 2",IDC_FRAMEMCD2,230,5,170,125
+    PUSHBUTTON      "Format Mcd",IDC_FORMAT1,65,135,50,14
+    GROUPBOX        "Memory Card 1",IDC_FRAMEMCD1,5,5,170,125
+    PUSHBUTTON      "Format Mcd",IDC_FORMAT2,290,135,50,14
+    CONTROL         "List3",IDC_LIST1,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,10,15,160,110
+    CONTROL         "List3",IDC_LIST2,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,235,15,160,110
+    PUSHBUTTON      "Reload Mcd",IDC_RELOAD1,120,135,50,14
+    PUSHBUTTON      "Reload Mcd",IDC_RELOAD2,345,135,50,14
+    PUSHBUTTON      "-> Copy ->",IDC_COPYTO2,180,30,45,14
+    PUSHBUTTON      "<- Copy <-",IDC_COPYTO1,180,50,45,14
+    PUSHBUTTON      "Paste",IDC_PASTE,180,70,45,14
+    PUSHBUTTON      "<- Un/Delete",IDC_DELETE1,180,90,45,14
+    PUSHBUTTON      "Un/Delete ->",IDC_DELETE2,180,110,45,14
+END
+
+
+IDD_RAMSEARCH DIALOGEX 0, 0, 287, 292
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION " RAM Search"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_RAMLIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_OWNERDATA | WS_BORDER | WS_TABSTOP,9,9,214,151,WS_EX_CLIENTEDGE
+    PUSHBUTTON      "&Search",IDC_C_SEARCH,226,9,52,16
+    PUSHBUTTON      "&Add Cheat",IDC_C_ADDCHEAT,226,145,52,16,WS_DISABLED
+    PUSHBUTTON      "&Watch",IDC_C_WATCH,226,127,52,16
+    PUSHBUTTON      "&Reset",IDC_C_RESET,226,27,52,16
+    PUSHBUTTON      "&Eliminate",IDC_C_ELIMINATE,226,109,52,16
+    GROUPBOX        "Comparison Operator",IDC_STATIC,10,166,102,118,0,WS_EX_TRANSPARENT
+    CONTROL         "Less Than",IDC_LESSTHAN,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,178,95,11
+    CONTROL         "Greater Than",IDC_MORETHAN,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,14,191,95,11
+    CONTROL         "Less Than or Equal To",IDC_NOMORETHAN,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,14,204,95,11
+    CONTROL         "Greater Than or Equal To",IDC_NOLESSTHAN,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,14,217,95,11
+    CONTROL         "Equal To",IDC_EQUALTO,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,14,230,95,11
+    CONTROL         "Not Equal To",IDC_DIFFERENTFROM,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,14,243,95,11
+    CONTROL         "Different By:",IDC_DIFFERENTBY,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,14,256,52,11
+    CONTROL         "Modulo",IDC_MODULO,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,14,269,35,11
+    EDITTEXT        IDC_EDIT_DIFFBY,69,255,38,12,ES_UPPERCASE | ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_EDIT_MODBY,51,267,38,12,ES_UPPERCASE | ES_AUTOHSCROLL | WS_DISABLED
+    GROUPBOX        "Compare To / By",IDC_STATIC,118,166,153,58,0,WS_EX_TRANSPARENT
+    CONTROL         "Previous Value",IDC_PREVIOUSVALUE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,121,176,67,10
+    CONTROL         "Specific Value:",IDC_SPECIFICVALUE,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,121,187,67,10
+    CONTROL         "Specific Address:",IDC_SPECIFICADDRESS,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,121,198,67,10
+    CONTROL         "Number of Changes:",IDC_NUMBEROFCHANGES,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,121,209,76,10
+    EDITTEXT        IDC_EDIT_COMPAREVALUE,203,183,63,12,ES_UPPERCASE | ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_EDIT_COMPAREADDRESS,203,195,63,12,ES_UPPERCASE | ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_EDIT_COMPARECHANGES,203,207,63,12,ES_UPPERCASE | ES_AUTOHSCROLL | WS_DISABLED
+    GROUPBOX        "Data Type / Display",IDC_STATIC,196,227,75,44,0,WS_EX_TRANSPARENT
+    CONTROL         "Signed",IDC_SIGNED,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,200,237,67,9
+    CONTROL         "Unsigned",IDC_UNSIGNED,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,200,248,67,9
+    CONTROL         "Hexadecimal",IDC_HEX,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,200,259,67,9
+    CONTROL         "Autosearch",IDC_C_AUTOSEARCH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,200,273,52,11
+    GROUPBOX        "Data Size",IDC_STATIC,117,227,73,57,0,WS_EX_TRANSPARENT
+    CONTROL         "1 byte",IDC_1_BYTE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,121,237,61,11
+    CONTROL         "2 bytes",IDC_2_BYTES,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,121,248,61,11
+    CONTROL         "4 bytes",IDC_4_BYTES,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,121,259,61,11
+    CONTROL         "Check Misaligned",IDC_MISALIGN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,121,272,65,8
+    PUSHBUTTON      "&Clear Change Counts",IDC_C_RESET_CHANGES,226,46,52,20,BS_MULTILINE
+    PUSHBUTTON      "&Undo",IDC_C_UNDO,226,69,52,16,WS_DISABLED
+    LTEXT           "Is",IDC_STATIC,92,270,12,8
+END
+
+IDD_RAMWATCH DIALOGEX 0, 0, 269, 298
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION " RAM Watch"
+MENU RAMWATCH_MENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_WATCHLIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_OWNERDATA | WS_BORDER | WS_TABSTOP,9,9,210,279,WS_EX_CLIENTEDGE
+    PUSHBUTTON      "Edit",IDC_C_WATCH_EDIT,226,66,34,14
+    PUSHBUTTON      "Remove",IDC_C_WATCH_REMOVE,226,83,34,14
+    PUSHBUTTON      "New",IDC_C_WATCH,226,100,34,14
+    PUSHBUTTON      "Duplicate",IDC_C_WATCH_DUPLICATE,226,117,34,14
+    PUSHBUTTON      "Add Cheat",IDC_C_ADDCHEAT,222,140,42,16,WS_DISABLED
+    GROUPBOX        "Watches",IDC_STATIC,222,11,42,125
+    CONTROL         "",ID_WATCHES_UPDOWN,"msctls_updown32",WS_TABSTOP,232,23,19,36
+END
+
+IDD_EDITWATCH DIALOGEX 0, 0, 181, 95
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION " Edit Watch"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CTEXT           "Address:",IDC_SPECIFICADDRESS,18,12,35,10
+    EDITTEXT        IDC_EDIT_COMPAREADDRESS,55,10,65,12,ES_UPPERCASE | ES_AUTOHSCROLL
+    CTEXT           "Notes:",IDC_PROMPT_TEXT,18,24,45,10
+    EDITTEXT        IDC_PROMPT_EDIT,55,22,65,12,ES_AUTOHSCROLL
+    GROUPBOX        "Data Type",IDC_STATIC,14,37,75,42,0,WS_EX_TRANSPARENT
+    CONTROL         "&Signed",IDC_SIGNED,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,18,47,67,9
+    CONTROL         "&Unsigned",IDC_UNSIGNED,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,18,57,67,9
+    CONTROL         "&Hexadecimal",IDC_HEX,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,18,67,67,9
+    GROUPBOX        "Data Size",IDC_STATIC,94,37,73,42,0,WS_EX_TRANSPARENT
+    CONTROL         "&1 byte",IDC_1_BYTE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,98,47,61,11
+    CONTROL         "&2 bytes",IDC_2_BYTES,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,98,57,61,11
+    CONTROL         "&4 bytes",IDC_4_BYTES,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,98,67,61,11
+    DEFPUSHBUTTON   "&OK",IDOK,66,80,50,14
+    PUSHBUTTON      "&Cancel",IDCANCEL,120,80,50,14
+END
+
+IDD_PROMPT DIALOG 0, 0, 186, 68
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Input Prompt"
+FONT 8, "Ms Shell Dlg 2"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,100,43,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,37,42,50,14
+    EDITTEXT        IDC_PROMPT_EDIT,10,15,167,14,ES_AUTOHSCROLL
+END
+
+IDD_LUA DIALOGEX 0, 0, 270, 150
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Lua Script"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Browse...",IDC_BUTTON_LUABROWSE,7,31,48,16
+    PUSHBUTTON      "Run",IDC_BUTTON_LUARUN,213,31,50,16
+    PUSHBUTTON      "Stop",IDC_BUTTON_LUASTOP,160,31,50,16
+    EDITTEXT        IDC_EDIT_LUAPATH,7,16,256,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_LUACONSOLE,7,61,256,81,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY | WS_VSCROLL
+    LTEXT           "Output Console",IDC_STATIC,7,51,51,8
+    LTEXT           "Script File",IDC_STATIC,7,7,32,8
+    PUSHBUTTON      "Edit",IDC_BUTTON_LUAEDIT,58,31,46,16
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+RAMWATCH_MENU MENU
+BEGIN
+    POPUP "File"
+    BEGIN
+        MENUITEM "&New list\tCtrl N",           RAMMENU_FILE_NEW
+        MENUITEM "&Open...\tCtrl O",            RAMMENU_FILE_OPEN
+        MENUITEM "&Save\tCtrl S",               RAMMENU_FILE_SAVE
+        MENUITEM "Sa&ve As...\tCtrl Shift S",   RAMMENU_FILE_SAVEAS
+        MENUITEM "&Append file...",             RAMMENU_FILE_APPEND
+        MENUITEM "Recent",                      RAMMENU_FILE_RECENT
+        MENUITEM SEPARATOR
+        MENUITEM "Auto-&load",                  RAMMENU_FILE_AUTOLOAD
+        MENUITEM "Save Window Position",        RAMMENU_FILE_SAVEWINDOW
+        MENUITEM SEPARATOR
+        MENUITEM "&Close\tAlt F4",              IDCANCEL
+    END
+    POPUP "Watches"
+    BEGIN
+        MENUITEM "&New Watch\tN",               IDC_C_WATCH
+        MENUITEM "&Edit Watch\tE",              IDC_C_WATCH_EDIT
+        MENUITEM "&Remove Watch\tR",            IDC_C_WATCH_REMOVE
+        MENUITEM "Duplicate Watch\tA",          IDC_C_WATCH_DUPLICATE
+        MENUITEM SEPARATOR
+        MENUITEM "Move Up\tU",                  IDC_C_WATCH_UP
+        MENUITEM "Move Down\tD",                IDC_C_WATCH_DOWN
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_MCDCONF, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 400
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 190
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+ABOUT_DIALOG DIALOGEX 0, 0, 247, 186
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,103,165,50,14
+    CTEXT           "PCSX EMU\nVersion x.x",IDC_PCSX_ABOUT_TEXT,103,10,40,15,0,WS_EX_TRANSPARENT
+    CTEXT           "PCSX a psx emulator...",IDC_PCSX_ABOUT_AUTHORS,7,35,232,55,0,WS_EX_TRANSPARENT
+    CTEXT           "Greets to...",IDC_PCSX_ABOUT_GREETS,7,110,232,40
+    GROUPBOX        "",IDC_STATIC,5,25,235,70
+    GROUPBOX        "",IDC_STATIC1,5,100,235,55
+END
+
+IDD_MHKEYS DIALOGEX 0, 0, 250, 244
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Map Hotkeys"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDCANCEL,195,225,50,14
+    GROUPBOX        "",IDC_STATIC,3,0,244,220
+    CTEXT           "Double-click a command to change its mapping",IDC_HKEYSS_STATIC,7,7,232,15,SS_CENTERIMAGE
+    CONTROL         "List1",IDC_MHKEYS_LIST,"SysListView32",LVS_REPORT | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,9,24,232,190
+END
+
+IDD_REPLAYINP DIALOGEX 0, 0, 276, 174
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Replay input"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,219,155,50,14
+    GROUPBOX        "",IDC_STATIC,3,0,269,150
+    RTEXT           "File:",IDC_STATIC1,8,11,24,10,SS_CENTERIMAGE
+    COMBOBOX        IDC_CHOOSE_LIST,35,10,231,128,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Cancel",IDCANCEL,165,155,50,14
+    RTEXT           "Length:",IDC_STATIC2,10,44,59,8
+    RTEXT           "Frames:",IDC_STATIC3,10,53,59,8
+    RTEXT           "Undo Count:",IDC_STATIC4,10,62,59,8
+    RTEXT           "Recorded From:",IDC_STATIC5,10,81,59,8
+    RTEXT           "CD-ROM Used:",IDC_STATIC6,10,90,59,8
+    RTEXT           "Current CD-ROM:",IDC_STATIC7,10,99,59,8
+    RTEXT           "Pad 1 Type:",IDC_STATIC8,10,108,59,8
+    RTEXT           "Pad 2 Type:",IDC_STATIC9,10,117,59,8
+    RTEXT           "Extras:",IDC_STATIC10,10,126,59,8
+    LTEXT           "00:00:00",IDC_LENGTH,76,44,59,8
+    LTEXT           "0",IDC_FRAMES,76,53,59,8
+    LTEXT           "0",IDC_UNDO,76,62,59,8
+    LTEXT           "",IDC_REPLAYRESET,76,81,190,8
+    LTEXT           "",IDC_USEDCDROM,76,90,190,8
+    LTEXT           "",IDC_CURRENTCDROM,76,99,190,8
+    LTEXT           "",IDC_PADTYPE1,76,108,190,8
+    LTEXT           "",IDC_PADTYPE2,76,117,190,8
+    LTEXT           "",IDC_USECHEATS,76,126,190,8
+    LTEXT           "",IDC_METADATA,76,135,190,8
+    CONTROL         "Open Read-Only",IDC_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,35,25,69,10
+    RTEXT           "Author Info:",IDC_STATIC11,10,135,59,8
+    RTEXT           "Emulator Used:",IDC_STATIC12,10,72,59,8
+    LTEXT           "",IDC_EMUVERSION,76,72,190,8
+END
+
+IDD_RECORDINP DIALOG  0, 0, 276, 114
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Record input"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "",-1,3,0,269,89
+    RTEXT           "File:",-1,26,10,24,8,SS_CENTERIMAGE
+    EDITTEXT        IDC_FILENAME,55,8,189,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BROWSE,249,8,18,12
+    RTEXT           "Author Info:",-1,10,26,40,8
+    EDITTEXT        IDC_METADATA,55,24,189,12,ES_AUTOHSCROLL
+    RTEXT           "Start From:",-1,10,42,40,8
+    COMBOBOX        IDC_REPLAYRESET,55,40,189,154,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Pad 1 Type:",-1,10,58,40,8
+    COMBOBOX        IDC_PADTYPE1,55,56,189,154,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Pad 2 Type:",-1,10,74,40,8
+    COMBOBOX        IDC_PADTYPE2,55,72,189,154,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Use Current Cheat List",IDC_USECHEATS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,55,95,106,14
+    PUSHBUTTON      "Cancel",IDCANCEL,165,95,50,14
+    DEFPUSHBUTTON   "OK",IDOK,219,95,50,14
+END
+
+IDD_CDCHANGE DIALOG  0, 0, 129, 46
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Switch Disc"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Please, insert the next disc.",IDC_FILENAME,10,10,127,8
+    DEFPUSHBUTTON   "OK",IDOK,39,25,50,14
+END
+
+IDD_CHEATER DIALOGEX 0, 0, 262, 198
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_3DLOOK | DS_CENTER | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU
+CAPTION "Cheat Editor"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_CHEAT_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,5,5,200,125,WS_EX_CLIENTEDGE
+    PUSHBUTTON      "&Add",IDC_ADD_CHEAT,215,5,40,15,WS_DISABLED
+    PUSHBUTTON      "&Delete",IDC_DELETE_CHEAT,215,25,40,15,WS_DISABLED
+    PUSHBUTTON      "&Update",IDC_UPDATE_CHEAT,215,45,40,15,WS_DISABLED
+    PUSHBUTTON      "C&lear",IDC_CLEAR_CHEATS,215,65,40,15
+    PUSHBUTTON      "&Load List",IDC_LOAD_CHEATS,215,85,40,15
+    PUSHBUTTON      "&Save List",IDC_SAVE_CHEATS,215,105,40,15
+    EDITTEXT        IDC_CHEAT_DESCRIPTION,85,134,119,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CHEAT_ADDRESS,85,154,44,15,ES_UPPERCASE | ES_AUTOHSCROLL
+    EDITTEXT        IDC_CHEAT_BYTE,215,154,26,15,ES_UPPERCASE | ES_AUTOHSCROLL
+    PUSHBUTTON      "&OK",IDOK,93,176,50,15
+    PUSHBUTTON      "&Cancel",IDCANCEL,151,176,50,15
+    RTEXT           "Cheat Description",IDC_LABEL_CHEAT_DESCRIPTION,19,134,61,15,SS_CENTERIMAGE
+    RTEXT           "Cheat Address (hex)",IDC_LABEL_CHEAT_ADDRESS,18,154,64,15,SS_CENTERIMAGE
+    RTEXT           "New Value (dec or hex)",IDC_LABEL_CHEAT_BYTE,134,154,74,15,SS_CENTERIMAGE
+END
+
+IDD_CHEAT_SEARCH DIALOGEX 0, 0, 272, 275
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_3DLOOK | DS_CENTER | WS_MINIMIZEBOX | WS_VISIBLE | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU
+CAPTION "RAM Search"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "&OK",IDOK,161,253,50,14
+    PUSHBUTTON      "&Cancel",IDCANCEL,218,253,50,14
+    CONTROL         "List1",IDC_ADDYS,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_OWNERDATA | WS_BORDER | WS_TABSTOP,7,7,201,152,WS_EX_CLIENTEDGE
+    PUSHBUTTON      "&Search",IDC_C_SEARCH,215,7,52,16
+    PUSHBUTTON      "&Add Cheat",IDC_C_ADD,215,29,52,16,WS_DISABLED
+    PUSHBUTTON      "&Watch",IDC_C_WATCH,215,51,52,16,WS_DISABLED
+    PUSHBUTTON      "&Reset",IDC_C_RESET,215,73,52,16
+    CONTROL         "1 byte",IDC_1_BYTE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,212,172,42,11
+    CONTROL         "2 bytes",IDC_2_BYTE,"Button",BS_AUTORADIOBUTTON,212,185,42,11
+    CONTROL         "3 bytes",IDC_3_BYTE,"Button",BS_AUTORADIOBUTTON,212,198,42,11
+    CONTROL         "4 bytes",IDC_4_BYTE,"Button",BS_AUTORADIOBUTTON,212,211,42,11
+    GROUPBOX        "Data Size",IDC_STATIC,205,162,54,66,0,WS_EX_TRANSPARENT
+    GROUPBOX        "Comparison Type",IDC_STATIC1,7,162,114,86,0,WS_EX_TRANSPARENT
+    CONTROL         "< (Less Than)",IDC_LESS_THAN,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,170,90,11
+    CONTROL         "> (Greater Than)",IDC_GREATER_THAN,"Button",BS_AUTORADIOBUTTON,13,182,90,11
+    CONTROL         "<= (Less Than or Equal to)",IDC_LESS_THAN_EQUAL,"Button",BS_AUTORADIOBUTTON,13,194,106,11
+    CONTROL         ">= (Greater than or Equal To)",IDC_GREATER_THAN_EQUAL,
+                    "Button",BS_AUTORADIOBUTTON,13,206,105,11
+    CONTROL         "= (Equal To)",IDC_EQUAL,"Button",BS_AUTORADIOBUTTON,13,218,90,11
+    CONTROL         "!= (Not Equal To)",IDC_NOT_EQUAL,"Button",BS_AUTORADIOBUTTON,13,230,90,11
+    GROUPBOX        "Data Type",IDC_STATIC2,125,206,75,43,0,WS_EX_TRANSPARENT
+    GROUPBOX        "Compare To",IDC_STATIC3,125,162,75,42,0,WS_EX_TRANSPARENT
+    CONTROL         "Previous Value",IDC_PREV,"Button",BS_AUTORADIOBUTTON | WS_GROUP,129,171,67,10
+    CONTROL         "Entered Value",IDC_ENTERED,"Button",BS_AUTORADIOBUTTON,129,181,67,10
+    CONTROL         "Entered Address",IDC_ENTEREDADDRESS,"Button",BS_AUTORADIOBUTTON,129,192,67,10
+    CONTROL         "Unsigned (>=0)",IDC_UNSIGNED,"Button",BS_AUTORADIOBUTTON | WS_GROUP,129,216,67,10
+    CONTROL         "Signed (+/-)",IDC_SIGNED,"Button",BS_AUTORADIOBUTTON,129,226,67,10
+    CONTROL         "Hexadecimal",IDC_HEX,"Button",BS_AUTORADIOBUTTON,129,236,67,10
+    EDITTEXT        IDC_VALUE_ENTER,72,253,83,12,ES_UPPERCASE | ES_AUTOHSCROLL | WS_DISABLED
+    RTEXT           "Enter a Value:",IDC_ENTER_LABEL,7,253,54,12,SS_CENTERIMAGE | WS_DISABLED
+END
+
+IDD_CHEAT_FROM_SEARCH DIALOG  0, 0, 187, 143
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_3DLOOK | DS_CENTER | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU
+CAPTION "Cheat Details"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "&OK",IDOK,85,123,45,13
+    PUSHBUTTON      "&Cancel",IDCANCEL,135,123,45,13
+    EDITTEXT        IDC_NC_ADDRESS,79,7,101,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NC_CURRVAL,79,31,101,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NC_PREVVAL,79,55,101,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NC_NEWVAL,79,79,101,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NC_DESC,79,103,101,12,ES_AUTOHSCROLL
+    RTEXT           "Address",IDC_STATIC,7,7,70,12,SS_CENTERIMAGE
+    RTEXT           "Current Value",IDC_STATIC1,7,31,70,12,SS_CENTERIMAGE
+    RTEXT           "Previous Value",IDC_STATIC2,7,55,70,12,SS_CENTERIMAGE
+    RTEXT           "New Value",IDC_STATIC3,7,79,70,12,SS_CENTERIMAGE
+    RTEXT           "Description",IDC_STATIC4,7,103,70,12,SS_CENTERIMAGE
+END
+
+IDD_RAM_POKE DIALOGEX 0, 0, 180, 26
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_3DLOOK | DS_CENTER | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU
+CAPTION "RAM Poke"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    PUSHBUTTON      "Poke",IDC_C_ADD,126,6,47,13
+    EDITTEXT        IDC_NC_ADDRESS,34,6,35,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NC_NEWVAL,97,6,20,12,ES_AUTOHSCROLL
+    RTEXT           "Address",IDC_STATIC,3,6,28,12,SS_CENTERIMAGE
+    RTEXT           "Value",IDC_STATIC1,71,6,22,12,SS_CENTERIMAGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    ABOUT_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 310
+        BOTTOMMARGIN, 178
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+
+#ifdef __MINGW32__
+IDI_APP_ICON            ICON    DISCARDABLE     ".\\win32\\Cdrom02.ico"
+#else
+IDI_APP_ICON            ICON    DISCARDABLE     "Cdrom02.ico"
+#endif
+
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Spanish (Argentina) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ESS)
+#ifdef _WIN32
+LANGUAGE LANG_SPANISH, SUBLANG_SPANISH_ARGENTINA
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CPUCONF DIALOG  0, 0, 232, 185
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Options"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Movie",IDC_STATIC,5,5,220,25
+    CONTROL         "Pause After Playback",IDC_PAUSE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,15,83,10
+    GROUPBOX        "Misc",IDC_STATIC1,5,35,220,38
+    CONTROL         "Enable Console Output",IDC_PSXOUT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,45,91,10
+    CONTROL         "Black && White Movies",IDC_MDEC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,58,85,10
+    CONTROL         "Disable Xa Decoding",IDC_XA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,121,45,87,10
+    CONTROL         "Disable Cd Audio",IDC_CDDA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,121,58,87,10
+    GROUPBOX        "CPU",IDC_STATIC2,5,78,220,51
+    CONTROL         "Enable Interpreter Cpu",IDC_CPU,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,88,98,10
+    CONTROL         "Resident Evil 2/3 Fix",IDC_VSYNCWA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,101,104,10
+    CONTROL         "Parasite Eve 2, Vandal Hearts 1/2 Fix",IDC_RCNTFIX,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,114,135,10
+    CONTROL         "Sio Irq Always Enabled",IDC_SIO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,121,88,88,10
+    CONTROL         "Spu Irq Always Enabled",IDC_SPUIRQ,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,121,101,89,10
+    GROUPBOX        "PSX System Type",IDC_SELPSX,5,134,220,25
+    CONTROL         "Autodetect",IDC_PSXAUTO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,144,51,10
+    COMBOBOX        IDC_PSXTYPES,105,143,53,50,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,55,165,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,125,165,50,14
+END
+
+IDD_NETPLAY DIALOG  0, 0, 165, 95
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "NetPlay Configuration"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,55,75,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,110,75,50,14
+    COMBOBOX        IDC_LISTNET,10,15,145,74,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Configure...",IDC_CONFIGNET,10,35,45,12
+    PUSHBUTTON      "Test...",IDC_TESTNET,60,35,45,12
+    PUSHBUTTON      "About...",IDC_ABOUTNET,110,35,45,12
+    RTEXT           "NetPlay",IDC_NETPLAY,50,5,41,10,SS_CENTERIMAGE
+    CTEXT           "Note: The NetPlay Plugin Directory should be the same as the other Plugins.",IDC_NETPLAYNOTE,10,50,145,19
+END
+
+IDD_CONNECT DIALOG  0, 0, 112, 31
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Connecting..."
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Please wait while connecting... /",IDC_CONNECTSTR,5,10,104,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_CPUCONF, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 225
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 168
+    END
+
+    IDD_NETPLAY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 158
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+
+    IDD_CONNECT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 105
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 24
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Spanish (Argentina) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Greek resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ELL)
+#ifdef _WIN32
+LANGUAGE LANG_GREEK, SUBLANG_DEFAULT
+#pragma code_page(1253)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CONFIG DIALOGEX 0, 0, 322, 154
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Configuration"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    COMBOBOX        IDC_LISTGPU,10,10,145,74,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Configure...",IDC_CONFIGGPU,10,30,45,12
+    PUSHBUTTON      "Test...",IDC_TESTGPU,60,30,45,12
+    PUSHBUTTON      "About...",IDC_ABOUTGPU,110,30,45,12
+    COMBOBOX        IDC_LISTSPU,165,10,145,74,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Configure...",IDC_CONFIGSPU,165,30,45,12
+    PUSHBUTTON      "Test...",IDC_TESTSPU,215,30,45,12
+    PUSHBUTTON      "About...",IDC_ABOUTSPU,265,30,43,12
+    COMBOBOX        IDC_LISTCDR,10,100,145,74,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Configure...",IDC_CONFIGCDR,10,120,43,12
+    PUSHBUTTON      "Test...",IDC_TESTCDR,60,120,45,12
+    PUSHBUTTON      "About...",IDC_ABOUTCDR,110,120,45,12
+    COMBOBOX        IDC_LISTBIOS,165,100,145,74,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,205,133,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,260,133,50,14
+    RTEXT           "Graphics",IDC_GRAPHICS,50,0,41,10,SS_CENTERIMAGE
+    RTEXT           "Sound",IDC_SOUND,200,0,43,10,SS_CENTERIMAGE
+    RTEXT           "CD-ROM",IDC_CDROM,63,90,30,10,SS_CENTERIMAGE
+    RTEXT           "Bios",IDC_BIOS,225,90,15,10,SS_CENTERIMAGE
+    COMBOBOX        IDC_LISTPAD1,10,55,145,74,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Configure...",IDC_CONFIGPAD1,10,75,45,12
+    PUSHBUTTON      "Test...",IDC_TESTPAD1,60,75,45,12
+    PUSHBUTTON      "About...",IDC_ABOUTPAD1,110,75,45,12
+    RTEXT           "Second Controller",IDC_SECONDCONTROLLER,205,45,58,10,SS_CENTERIMAGE
+    COMBOBOX        IDC_LISTPAD2,165,55,145,74,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Configure...",IDC_CONFIGPAD2,165,75,45,12
+    PUSHBUTTON      "Test...",IDC_TESTPAD2,215,75,45,12
+    PUSHBUTTON      "About...",IDC_ABOUTPAD2,265,75,45,12
+    CTEXT           "First Controller",IDC_FIRSTCONTROLLER,55,45,48,10,SS_CENTERIMAGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_CONFIG, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 147
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Greek resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
