@@ -1,5 +1,6 @@
 #include "PsxCommon.h"
 #include "resource.h"
+#include "ram_search.h"
 #include "../cheat.h"
 #include "../movie.h"
 
@@ -605,6 +606,7 @@ static BOOL CALLBACK ChtEdtrCallB(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM
 					GPU_displayText(_("*PCSX*: Cheats Enabled"));
 				}
 				PCSXApplyCheats();
+				Update_RAM_Search();
 				break;
 			}
 
@@ -871,6 +873,7 @@ static BOOL CALLBACK ChtEdtrCallB(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM
 					GPU_displayText(_("*PCSX*: Cheats Enabled"));
 				}
 				PCSXApplyCheats();
+				Update_RAM_Search();
 			}
 
 			case IDCANCEL:
