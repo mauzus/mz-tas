@@ -38,7 +38,7 @@ static ControlLayoutInfo controlLayoutInfos [] = {
 };
 static const int numControlLayoutInfos = sizeof(controlLayoutInfos)/sizeof(*controlLayoutInfos);
 
-struct {
+struct windowInfoStruct {
 	int width; int height;
 	ControlLayoutState layoutState [numControlLayoutInfos];
 } windowInfo;
