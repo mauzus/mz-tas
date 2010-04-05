@@ -56,10 +56,6 @@ void inline execI()
 	{
 		if (iVSyncFlag) {
 			if (iGpuHasUpdated) {
-				if (iSaveStateTo) {
-						WIN32_SaveState(iSaveStateTo-1);
-						iSaveStateTo = 0;
-				}
 				if (iFrameAdvance || iDoPauseAtVSync) {
 					iPause = 1;
 					iDoPauseAtVSync = 0;
@@ -68,6 +64,10 @@ void inline execI()
 				iGpuHasUpdated = 0;
 			}
 			iVSyncFlag = 0;
+			if (iSaveStateTo) {
+					WIN32_SaveState(iSaveStateTo-1);
+					iSaveStateTo = 0;
+			}
 			PCSX_LuaFrameBoundary();
 			iJoysToPoll = 2;
 		}

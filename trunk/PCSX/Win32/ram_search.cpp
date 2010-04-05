@@ -26,7 +26,7 @@
 
 
 #include "../PsxCommon.h"
-#include "../cheat.h"
+#include "../Cheat.h"
 #ifdef WIN32
 #include "Win32.h"
 #endif
@@ -56,6 +56,22 @@ static inline u8* HardwareToSoftwareAddress(HWAddressType address)
 		return NULL;
 }
 
+struct ICheat
+{
+	uint32  address;
+	uint32  new_val;
+	uint32  saved_val;
+	int     size;
+	uint8   enabled;
+	uint8   saved;
+	char    name [22];
+	int format;
+};
+
+typedef enum
+{
+    PCSX_8_BITS, PCSX_16_BITS, PCSX_24_BITS, PCSX_32_BITS
+} PCSXCheatDataSize;
 
 struct MemoryRegion
 {
@@ -1757,25 +1773,37 @@ LRESULT CALLBACK RamSearchProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lPara
 					int watchItemIndex = ListView_GetSelectionMark(GetDlgItem(hDlg,IDC_RAMLIST));
 					if(watchItemIndex >= 0)
 					{
-//						unsigned long address = CALL_WITH_T_SIZE_TYPES_1(GetHardwareAddressFromItemIndex, rs_type_size,rs_t=='s',noMisalign, watchItemIndex);
+						struct ICheat cht;
+						ZeroMemory(&cht, sizeof(struct SCheat));
 
-						int sizeType = -1;
+						cht.address = CALL_WITH_T_SIZE_TYPES_1(GetHardwareAddressFromItemIndex, rs_type_size,rs_t=='s',noMisalign, watchItemIndex);
+
+						cht.size = -1;
 						if(rs_type_size == 'b')
-							sizeType = 0;
+							cht.size = 1;
 						else if(rs_type_size == 'w')
-							sizeType = 1;
+							cht.size = 2;
 						else if(rs_type_size == 'd')
-							sizeType = 2;
+							cht.size = 4;
 
-						int numberType = -1;
-						if(rs_t == 's')
-							numberType = 0;
-						else if(rs_t == 'u')
-							numberType = 1;
+						if(rs_t == 'u')
+							cht.format = 1;
+						else if(rs_t == 's')
+							cht.format = 2;
 						else if(rs_t == 'h')
-							numberType = 2;
+							cht.format = 3;
 
-						// TODO: open add-cheat dialog
+							//invoke dialog
+						INT_PTR CALLBACK DlgCheatSearchAdd(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam);
+						if(!DialogBoxParam(hInst, MAKEINTRESOURCE(IDD_CHEAT_FROM_SEARCH), hDlg, DlgCheatSearchAdd, (LPARAM)&cht))
+						{
+							int p;
+							for(p=0; p<cht.size; p++)
+							{
+								PCSXAddCheat(TRUE, cht.saved, cht.address +p, ((cht.new_val>>(8*p))&0xFF));
+								strcpy(Cheat.c[Cheat.num_cheats-1].name, cht.name);
+							}
+						}
 					}
 				}	{rv = true; break;}
 				case IDC_C_RESET:
@@ -2091,4 +2119,142 @@ void init_list_box(HWND Box, const char* Strs[], int numColumns, int *columnWidt
 	}
 
 	ListView_SetExtendedListViewStyle(Box, LVS_EX_FULLROWSELECT);
+}
+
+INT_PTR CALLBACK DlgCheatSearchAdd(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+	static struct ICheat* new_cheat;
+	int ret=-1;
+
+	switch(msg)
+	{
+	case WM_INITDIALOG:
+		{
+			char buf [12];
+			new_cheat=(struct ICheat*)lParam;
+			sprintf(buf, "%06X", new_cheat->address);
+			SetDlgItemText(hDlg, IDC_NC_ADDRESS, buf);
+			switch(new_cheat->format)
+			{
+			default:
+			case 1://UNSIGNED
+				SetWindowLong(GetDlgItem(hDlg, IDC_NC_NEWVAL), GWL_STYLE, ES_NUMBER |GetWindowLong(GetDlgItem(hDlg, IDC_NC_NEWVAL),GWL_STYLE));
+				if(new_cheat->size==1) {
+					SendDlgItemMessage(hDlg, IDC_NC_NEWVAL,EM_SETLIMITTEXT, 3, 0);
+				}
+				if(new_cheat->size==2) {
+					SendDlgItemMessage(hDlg, IDC_NC_NEWVAL,EM_SETLIMITTEXT, 5, 0);
+				}
+				if(new_cheat->size==3) {
+					SendDlgItemMessage(hDlg, IDC_NC_NEWVAL,EM_SETLIMITTEXT, 8, 0);
+				}
+				if(new_cheat->size==4) {
+					SendDlgItemMessage(hDlg, IDC_NC_NEWVAL,EM_SETLIMITTEXT, 10, 0);
+				}
+				break;
+			case 3:
+				{
+					char formatstring[10];
+					sprintf(formatstring, "%%%02dX",new_cheat->size*2);
+					SendDlgItemMessage(hDlg, IDC_NC_NEWVAL,EM_SETLIMITTEXT, new_cheat->size*2, 0);
+				}
+				break; //HEX
+			case 2:
+			if(new_cheat->size==1) {
+				//-128
+				SendDlgItemMessage(hDlg, IDC_NC_NEWVAL,EM_SETLIMITTEXT, 4, 0);
+			}
+			if(new_cheat->size==2) {
+				//-32768
+				SendDlgItemMessage(hDlg, IDC_NC_NEWVAL,EM_SETLIMITTEXT, 6, 0);
+			}
+			if(new_cheat->size==3) {
+				//-8388608
+				SendDlgItemMessage(hDlg, IDC_NC_NEWVAL,EM_SETLIMITTEXT, 8, 0);
+			}
+			if(new_cheat->size==4) {
+				//-2147483648
+				SendDlgItemMessage(hDlg, IDC_NC_NEWVAL,EM_SETLIMITTEXT, 11, 0);
+			}
+			break;
+			}
+		}
+			return TRUE;
+	case WM_COMMAND:
+		{
+			switch(LOWORD(wParam))
+			{
+			case IDOK:
+				{
+					int p;
+					int ret = 0;
+					char buf[23];
+					int temp=new_cheat->size;
+					PCSXCheatDataSize tmp = PCSX_8_BITS;
+					ZeroMemory(new_cheat, sizeof(struct SCheat));
+					new_cheat->size=temp;
+					GetDlgItemText(hDlg, IDC_NC_ADDRESS, buf, 7);
+					ScanAddress(buf,&new_cheat->address);
+
+					if(temp==1)
+						tmp=PCSX_8_BITS;
+					if(temp==2)
+						tmp=PCSX_16_BITS;
+					if(temp==3)
+						tmp=PCSX_24_BITS;
+					if(temp==4)
+						tmp=PCSX_32_BITS;
+
+					if(0!=GetDlgItemText(hDlg, IDC_NC_NEWVAL, buf, 12))
+					{
+						if(new_cheat->format==2)
+							ret=sscanf(buf, "%d", &new_cheat->new_val);
+						else if(new_cheat->format==1)
+							ret=sscanf(buf, "%u", &new_cheat->new_val);
+						else if(new_cheat->format==3)
+							ret=sscanf(buf, "%x", &new_cheat->new_val);
+
+
+//						if(0==GetDlgItemText(hDlg, IDC_NC_CURRVAL, buf, 12))
+						if(0==GetDlgItemText(hDlg, IDC_NC_NEWVAL, buf, 12))
+							new_cheat->saved=FALSE;
+						else
+						{
+							int i;
+							if(new_cheat->format==2)
+								ret=sscanf(buf, "%d", &i);
+							else if(new_cheat->format==1)
+								ret=sscanf(buf, "%u", &i);
+							else if(new_cheat->format==3)
+								ret=sscanf(buf, "%x", &i);
+
+							new_cheat->saved_val=i;
+							new_cheat->saved=TRUE;
+						}
+						GetDlgItemText(hDlg, IDC_NC_DESC, new_cheat->name, 23);
+
+						new_cheat->enabled=TRUE;
+						for(p=0; p<new_cheat->size; p++)
+						{
+							PCSXAddCheat(new_cheat->enabled, new_cheat->saved_val, new_cheat->address +p, (new_cheat->new_val>>(8*p)));
+							strcpy(Cheat.c[Cheat.num_cheats-1].name, new_cheat->name);
+						}
+						ret=0;
+					}
+					if (!cheatsEnabled) {
+						cheatsEnabled = 1;
+						GPU_displayText(_("*PCSX*: Cheats Enabled"));
+					}
+					PCSXApplyCheats();
+					Update_RAM_Search();
+				}
+
+			case IDCANCEL:
+				EndDialog(hDlg, ret);
+				return TRUE;
+			default: break;
+			}
+		}
+	default: return FALSE;
+	}
 }

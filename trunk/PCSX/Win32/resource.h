@@ -417,8 +417,6 @@
 #define IDC_C_LOADWATCH                 40100
 #define IDC_C_SAVEWATCH                 40101
 #define IDC_NC_ADDRESS                  40102
-#define IDC_NC_CURRVAL                  40103
-#define IDC_NC_PREVVAL                  40104
 #define IDC_NC_NEWVAL                   40105
 #define IDC_NC_DESC                     40106
 #define IDD_CHEAT_FROM_SEARCH           40107
