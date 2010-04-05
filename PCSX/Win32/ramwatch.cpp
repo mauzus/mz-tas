@@ -60,6 +60,18 @@ void init_list_box(HWND Box, const char* Strs[], int numColumns, int *columnWidt
 bool QuickSaveWatches();
 bool ResetWatches();
 
+struct ICheat
+{
+	uint32  address;
+	uint32  new_val;
+	uint32  saved_val;
+	int     size;
+	uint8   enabled;
+	uint8   saved;
+	char    name [22];
+	int format;
+};
+
 unsigned int GetCurrentValue(AddressWatcher& watch)
 {
 	return ReadValueAtHardwareAddress(watch.Address, watch.Size == 'd' ? 4 : watch.Size == 'w' ? 2 : 1);
@@ -1109,25 +1121,37 @@ LRESULT CALLBACK RamWatchProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam
 					watchIndex = ListView_GetSelectionMark(GetDlgItem(hDlg,IDC_WATCHLIST));
 					if(watchIndex >= 0)
 					{
-//						unsigned int address = rswatches[watchIndex].Address;
+						struct ICheat cht;
+						ZeroMemory(&cht, sizeof(struct SCheat));
 
-						int sizeType = -1;
+						cht.address = rswatches[watchIndex].Address;
+
+						cht.size = -1;
 						if(rswatches[watchIndex].Size == 'b')
-							sizeType = 0;
+							cht.size = 1;
 						else if(rswatches[watchIndex].Size == 'w')
-							sizeType = 1;
+							cht.size = 2;
 						else if(rswatches[watchIndex].Size == 'd')
-							sizeType = 2;
+							cht.size = 4;
 
-						int numberType = -1;
-						if(rswatches[watchIndex].Type == 's')
-							numberType = 0;
-						else if(rswatches[watchIndex].Type == 'u')
-							numberType = 1;
+						if(rswatches[watchIndex].Type == 'u')
+							cht.format = 1;
+						else if(rswatches[watchIndex].Type == 's')
+							cht.format = 2;
 						else if(rswatches[watchIndex].Type == 'h')
-							numberType = 2;
+							cht.format = 3;
 
-						// TODO: open add-cheat dialog
+							//invoke dialog
+						INT_PTR CALLBACK DlgCheatSearchAdd(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam);
+						if(!DialogBoxParam(hInst, MAKEINTRESOURCE(IDD_CHEAT_FROM_SEARCH), hDlg, DlgCheatSearchAdd, (LPARAM)&cht))
+						{
+							int p;
+							for(p=0; p<cht.size; p++)
+							{
+								PCSXAddCheat(TRUE, cht.saved, cht.address +p, ((cht.new_val>>(8*p))&0xFF));
+								strcpy(Cheat.c[Cheat.num_cheats-1].name, cht.name);
+							}
+						}
 					}
 				}
 				break;

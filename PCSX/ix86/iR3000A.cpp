@@ -588,12 +588,6 @@ __inline static void execute() {
 	if (!iPause || iFrameAdvance) { // emulate
 		if (iVSyncFlag) {
 			if (iGpuHasUpdated) {
-				if (iSaveStateTo) {
-					#ifdef WIN32
-						WIN32_SaveState(iSaveStateTo-1);
-						iSaveStateTo = 0;
-					#endif
-				}
 				if (iFrameAdvance || iDoPauseAtVSync) {
 					iPause = 1;
 					iDoPauseAtVSync = 0;
@@ -602,6 +596,12 @@ __inline static void execute() {
 				iGpuHasUpdated = 0;
 			}
 			iVSyncFlag = 0;
+			if (iSaveStateTo) {
+				#ifdef WIN32
+					WIN32_SaveState(iSaveStateTo-1);
+					iSaveStateTo = 0;
+				#endif
+			}
 			PCSX_LuaFrameBoundary();
 			iJoysToPoll = 2; //reset lag counter after Lua
 		}
