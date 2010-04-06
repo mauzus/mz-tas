@@ -3699,7 +3699,6 @@ void CALLBACK GPUsetframecounter(unsigned long newCurrentFrame,unsigned long new
 {
 	currentFrame=newCurrentFrame;
 	totalFrames=newTotalFrames;
-	DisplayText();
 	BuildDispMenu(0);
 	ThereIsLag=0;
 }
