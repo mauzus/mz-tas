@@ -1,5 +1,5 @@
 <?php
-$map              = "6-4"; // level 6 has 9 acts
+$map              = "6-6"; // level 6 has 9 acts
 //$debug_lines      = 1;
 $print_in_browser = 1;
 
@@ -131,10 +131,26 @@ function create_map($map_filename, $size_x, $size_y) {
 	}
 	// save image into a file
 	imagepng($tmp_img, $map_filename.".png");
+}
 
-	// print image directly
-	if (isset($print_in_browser) && $print_in_browser) {
-		if (file_exists($map_filename.".png"))
-			echo '<img src="'.$map_filename.'.png" />';
-	}
+// print image directly
+if (isset($print_in_browser) && $print_in_browser) {
+?>
+<html>
+<head>
+<style>
+body {
+	background-color: black;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+<?
+	if (file_exists($map.".png"))
+		echo '<img src="'.$map.'.png" />';
+?>
+</body>
+</html>
+<?
 }
