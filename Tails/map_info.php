@@ -12,4 +12,6 @@ $map_info = array (
 "4-2" => array("level_height" => 4,"level_width" => 15,"height_crop" => 17,"width_extra" => $osd_width),
 "4-3" => array("level_height" => 38,"level_width" => 1,"height_crop" => -31,"width_extra" => $osd_width-1),
 "4-4" => array("level_height" => 4,"level_width" =>  5,"height_crop" => 17,"width_extra" => $osd_width),
+"5-1" => array("level_height" => 4,"level_width" =>  3,"height_crop" => 17+24,"width_extra" => $osd_width),
+"5-2" => array("level_height" => 9,"level_width" =>  7,"height_crop" => 25,"width_extra" => $osd_width),
 );
