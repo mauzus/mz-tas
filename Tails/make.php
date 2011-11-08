@@ -1,5 +1,5 @@
 <?php
-$map              = "6-6"; // level 6 has 9 acts
+$map              = "6-9";
 //$debug_lines      = 1;
 $print_in_browser = 1;
 
