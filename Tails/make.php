@@ -1,5 +1,5 @@
 <?php
-$map              = "7-2";
+$map              = "8-2";
 //$debug_lines      = 1;
 $print_in_browser = 1;
 
