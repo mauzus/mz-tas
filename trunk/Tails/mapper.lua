@@ -16,6 +16,7 @@ local fixed_cam_y = (screenshot_heigth*height_multiplier)+8
 local fixed_cam_x = 0
 
 local cam_lock = 0
+local pos_lock = 0
 
 local address = {
 	cam_x           = 0xD288,
@@ -131,7 +132,7 @@ gui.register(function()
 	end
 
 	local displ = 5
-	for i = 0,20 do
+	for i = 0,40 do
 		gui.line(0,
 		         (40+32+screenshot_heigth*i) - value.cam_y - value.cam_off_y,
 		         160,
@@ -149,16 +150,19 @@ gui.register(function()
 
 	local gui_x, gui_y = 40,2
 	local cam_lock_str = ""
+	local pos_lock_str = ""
 	if cam_lock ~= 0 then cam_lock_str = "*" end
+	if pos_lock ~= 0 then pos_lock_str = "+" end
 	gui.text(gui_x, gui_y+ 0, "lvl: "..  level.."-"..act)
 	gui.text(gui_x, gui_y+ 8, "pos: "..  fixed_x..":"..fixed_y)
 	gui.text(gui_x, gui_y+16, "cam: "..  value.cam_x..":"..value.cam_y-8)
-	gui.text(gui_x, gui_y+24, "hgt: "..  height_multiplier .." "..cam_lock_str)
+	gui.text(gui_x, gui_y+24, "hgt: "..  height_multiplier .." "..cam_lock_str..pos_lock_str)
 end)
 
 local level_pressed    = 0
 local act_pressed      = 0
 local cam_lock_pressed = 0
+local pos_lock_pressed = 0
 
 emu.registerafter( function()
 	GetGlobalValues()
@@ -232,6 +236,20 @@ emu.registerafter( function()
 	if (not keys.C) then
 		cam_lock_pressed = 0
 	end
+	if keys.X and pos_lock_pressed == 0 then
+		if pos_lock ~= 0 then pos_lock = 0
+		else
+			pos_lock = 1
+		end
+		pos_lock_pressed = 1
+	end
+	if (not keys.X) then
+		pos_lock_pressed = 0
+	end
+	if pos_lock == 0 then
+		fixed_x = memory.readword(address.tails+offset.x)
+		fixed_y = memory.readword(address.tails+offset.y)
+	end
 
 	if keys.M then
 		os.execute('del /Q shots')
@@ -239,8 +257,8 @@ emu.registerafter( function()
 
 	-- cheats
 	memory.writebyte(0xd3a1, 0xff)
-	memory.writeword(0xd511, fixed_x)
-	memory.writeword(0xd514, fixed_y)
+	if pos_lock ~= 0 then memory.writeword(0xd511, fixed_x) end
+	if pos_lock ~= 0 then memory.writeword(0xd514, fixed_y) end
 	if cam_lock ~= 0 then memory.writeword(address.cam_y, fixed_cam_y) end
 	memory.writebyte(0xd506, 0)
 end)
@@ -254,11 +272,11 @@ memory.registerwrite(address.cam_y, 2, function()
 end)
 
 memory.registerwrite(address.tails+offset.x, 2, function()
-	memory.writeword(address.tails+offset.x, fixed_x)
+	if pos_lock ~= 0 then memory.writeword(address.tails+offset.x, fixed_x) end
 end)
 
 memory.registerwrite(address.tails+offset.y, 2, function()
-	memory.writeword(address.tails+offset.y, fixed_y)
+	if pos_lock ~= 0 then memory.writeword(address.tails+offset.y, fixed_y) end
 end)
 
 -- animation

@@ -1,5 +1,5 @@
 <?php
-$map              = "1-4";
+$map              = "4-3";
 //$debug_lines      = 1;
 $print_in_browser = 1;
 
@@ -62,6 +62,7 @@ function cut_image($y, $x, $src_x, $src_y, $screen_width, $screen_height) {
 //		echo '<h2>"'.$shots_dir.$filename.'" doesn\'t exist! Image was not created.</h2>';
 //		return;
 		$img = imagecreatetruecolor(160, 144);
+		imagefilledrectangle($img, 0, 0, 160, 144, imagecolorallocate($img, 0, 255, 0));
 	}
 	else {
 		$img     = imagecreatefrompng($shots_dir.$filename);
@@ -93,6 +94,7 @@ function create_map($map_filename, $size_x, $size_y) {
 	$img_width = ($size_x-1)*$screen_width+$width_extra+$osd_width;
 	$img_height = $size_y*$screen_height-$osd_height-$height_crop;
 	$tmp_img = imagecreatetruecolor($img_width, $img_height);
+	imagefilledrectangle($tmp_img, 0, 0, $img_width, $img_height, imagecolorallocate($tmp_img, 255, 0, 255));
 	$line_color = imagecolorallocate($tmp_img, 255, 0, 0);
 
 	$dest_y = 0;
