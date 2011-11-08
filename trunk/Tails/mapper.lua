@@ -121,7 +121,7 @@ gui.register(function()
 	ObjectInformation()
 
 	local x_coord = 0
-	for i = 0,16 do
+	for i = 0,40 do
 		x_coord = (screenshot_width*i) - value.cam_x + 32
 		if i==0 then x_coord = 0 end
 		gui.line(x_coord,
@@ -256,6 +256,7 @@ emu.registerafter( function()
 	end
 
 	-- cheats
+	memory.writeword(address.tails+offset.hp,0x20)
 	memory.writebyte(0xd3a1, 0xff)
 	if pos_lock ~= 0 then memory.writeword(0xd511, fixed_x) end
 	if pos_lock ~= 0 then memory.writeword(0xd514, fixed_y) end
