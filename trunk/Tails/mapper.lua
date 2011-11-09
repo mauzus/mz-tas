@@ -11,8 +11,8 @@ local height_multiplier = 0
 
 local last_screenshot_x = 8978978979879879
 local screenshot_width = 160 - 32
-local screenshot_heigth = 144 - 40
-local fixed_cam_y = (screenshot_heigth*height_multiplier)+8
+local screenshot_height = 144 - 40
+local fixed_cam_y = (screenshot_height*height_multiplier)+8
 local fixed_cam_x = 0
 
 local cam_lock = 0
@@ -134,16 +134,16 @@ gui.register(function()
 	local displ = 5
 	for i = 0,40 do
 		gui.line(0,
-		         (40+32+screenshot_heigth*i) - value.cam_y - value.cam_off_y,
+		         (40+32+screenshot_height*i) - value.cam_y - value.cam_off_y,
 		         160,
-		         (40+32+screenshot_heigth*i) - value.cam_y - value.cam_off_y,
+		         (40+32+screenshot_height*i) - value.cam_y - value.cam_off_y,
 		        "red")
-		for j = 0,16 do
+		for j = 0,40 do
 			x_coord = (48+screenshot_width*j) - value.cam_x - value.cam_off_x + displ + 32
 			if j==0 then x_coord = x_coord - 32 end
 			gui.text(
 			x_coord,
-			(40+32+screenshot_heigth*i) - value.cam_y - value.cam_off_y + displ,
+			(40+32+screenshot_height*i) - value.cam_y - value.cam_off_y + displ,
 			i..":"..j)
 		end
 	end
@@ -188,17 +188,23 @@ emu.registerafter( function()
 		gui.savescreenshot()
 	end
 
+	-- for vertical levels
+--	if (((value.cam_y%screenshot_height) == 0) and (last_screenshot_x ~= value.cam_y)) then
+--		last_screenshot_x = value.cam_y
+--		gui.savescreenshot()
+--	end
+
 	if cam_lock == 0 then
 		height_multiplier = math.floor(math.abs((fixed_y-72) / 104))
 	end
 --	if keys.X and height_pressed == 0 then
 --		height_multiplier = height_multiplier + 1
---		fixed_cam_y = (screenshot_heigth*height_multiplier)+8
+--		fixed_cam_y = (screenshot_height*height_multiplier)+8
 --		height_pressed = 1
 --	end
 --	if keys.Z and height_pressed == 0 then
 --		height_multiplier = height_multiplier - 1
---		fixed_cam_y = (screenshot_heigth*height_multiplier)+8
+--		fixed_cam_y = (screenshot_height*height_multiplier)+8
 --		height_pressed = 1
 --	end
 --	if ((not keys.X) and (not keys.Z)) then
@@ -229,7 +235,7 @@ emu.registerafter( function()
 		else
 			cam_lock = 1
 			height_multiplier = math.floor(math.abs((fixed_y-72) / 104))
-			fixed_cam_y = (screenshot_heigth*height_multiplier)+8
+			fixed_cam_y = (screenshot_height*height_multiplier)+8
 		end
 		cam_lock_pressed = 1
 	end
