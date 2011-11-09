@@ -1,5 +1,5 @@
 <?php
-$map              = "11-1";
+$map              = "11-2";
 //$debug_lines      = 1;
 $print_in_browser = 1;
 
@@ -50,6 +50,7 @@ function cut_image($y, $x, $src_x, $src_y, $screen_width, $screen_height) {
 	$dega_shots_dir = "E:/MinGW/projects/dega/shots/";
 	$filename = str_pad($y, 3, "0", STR_PAD_LEFT) . "_" . str_pad($x, 3, "0", STR_PAD_LEFT) . ".png";
 	$dega_filename = $dega_shots_dir."Tails Adventures (JU) [!]_".str_pad($x, 3, "0", STR_PAD_LEFT).".png";
+//	$dega_filename = $dega_shots_dir."Tails Adventures (JU) [!]_".str_pad($y, 3, "0", STR_PAD_LEFT).".png";
 
 	if (!file_exists($shots_dir))
 		mkdir($shots_dir);
